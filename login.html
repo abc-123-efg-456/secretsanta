@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+<meta charset="UTF-8">
+<title>Login</title>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+   
+    
+    margin: 0;
+    padding: 0;
+    background-image: url("y.jpg");  
+    background-size: cover;                   
+    background-position: center;             
+    background-repeat: no-repeat
+    font-family: "Arial", sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.box {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(14px);
+  padding: 40px;
+  border-radius: 18px;
+  width: 320px;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 20px;
+  border: none;
+  background: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+</style>
+</head>
+
+<body>
+  
+
+<div class="box">
+  <h2>Login</h2>
+  <input id="user" placeholder="Username">
+  <input id="pass" type="password" placeholder="Password">
+  <button onclick="login()">Enter</button>
+</div>
+
+<script>
+function login() {
+  const user = document.getElementById("user").value;
+  const pass = document.getElementById("pass").value;
+
+  if (user === "ap" && pass === "236") {
+    localStorage.setItem("isLoggedIn", "true");
+    window.location.href = "index.html";
+  } else {
+    alert("Wrong username or password");
+  }
+}
+</script>
+
+
+
+</body>
+</html>

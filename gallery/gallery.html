@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #e5e7eb;
+      opacity: 0;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .subtitle {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      color: #93c5fd;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .gallery {
+      max-width: 1000px;
+      margin: auto;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .gallery img,
+    .gallery video {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      background: #020617;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .gallery img:hover,
+    .gallery video:hover {
+      transform: scale(1.04);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    @media (min-width: 768px) {
+      .gallery img,
+      .gallery video {
+        height: 220px;
+      }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+    }
+
+    .lightbox img,
+    .lightbox video {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+    }
+
+    .lightbox video {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div>
+      <h1>Gallery✨</h1><br>  
+      <p class="subtitle">Jhadu Pocha's yaade!!!</p>
+    </div>
+    <a href="../index.html" class="back-btn">← Back</a>
+  </div>
+
+  <div class="gallery">
+    <img src="a.jpeg">
+    <img src="b.jpeg">
+    <img src="c.jpeg">
+    <img src="d.jpeg">
+    <img src="e.jpeg">
+    <img src="h.jpeg">
+    <img src="i.jpeg">
+    <img src="j.jpeg">
+    <img src="k.jpeg">
+
+   
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <img id="lightbox-img">
+    <video id="lightbox-video" controls></video>
+  </div>
+
+  <h1 style="text-align:center; margin:40px 0; color:#94a3b8;">
+    and more memories to goooooo
+  </h1>
+
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightbox-img");
+    const lbVideo = document.getElementById("lightbox-video");
+
+    document.querySelectorAll(".gallery img").forEach(img => {
+      img.addEventListener("click", () => {
+        lbVideo.pause();
+        lbVideo.style.display = "none";
+        lbImg.style.display = "block";
+        lbImg.src = img.src;
+        lightbox.style.display = "flex";
+      });
+    });
+
+    document.querySelectorAll(".gallery video").forEach(video => {
+      video.addEventListener("click", () => {
+        lbImg.style.display = "none";
+        lbVideo.style.display = "block";
+        lbVideo.src = video.src;
+        lbVideo.play();
+        lightbox.style.display = "flex";
+      });
+    });
+
+    lightbox.addEventListener("click", () => {
+      lbVideo.pause();
+      lightbox.style.display = "none";
+    });
+  </script>
+
+  <script>
+    document.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const href = link.getAttribute("href");
+        document.body.style.opacity = 0;
+        setTimeout(() => {
+          window.location.href = href;
+        }, 300);
+      });
+    });
+  </script>
+
+</body>
+</html>

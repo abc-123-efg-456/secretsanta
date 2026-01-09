@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<script>
+if (localStorage.getItem("isLoggedIn") !== "true") {
+  window.location.href = "../login.html";
+}
+</script>
+
+<title>April</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 700px;
+  padding: 40px 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  animation: fadeUp 1.2s ease;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  margin-bottom: 20px;
+}
+
+#content {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+#timer {
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-top: 15px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>April ka Gyaan😃</h1>
+  <div id="content"></div>
+  <p id="timer"></p>
+</div>
+
+<script>
+const content = document.getElementById("content");
+const timer = document.getElementById("timer");
+
+const today = new Date();
+const letterMonth = 3; 
+const unlockDate = new Date(today.getFullYear(), letterMonth, 1);
+
+if (today < unlockDate) {
+  content.innerHTML = `⏳ This letter will open on the 1st.
+  <br>
+  Chal baad mai aa.
+  `;
+  function updateTimer() {
+    const diff = unlockDate - new Date();
+
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    timer.innerText = `Opens in ${d}d ${h}h ${m}m ${s}s`;
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+} else {
+  content.innerHTML = `
+  “Bloom at your own pace — nobody else knows your season.” <br><br>
+   Exams finally khatamm🎉<br>
+ Ab bas thoda tension free rahega, marks shayad kuch din mein aa jayenge chod tab ka tab dekhenge 😅
+Filhaal vacation enjoy kar, rest le, ghoom. Waise bhi ye last summer vacation hai iske baad koi long vaction nhi . enjoyyyy.<br>
+
+ `;
+}
+</script>
+
+<script>
+  window.addEventListener("load", () => {
+    const duration = 10000; // 5 seconds
+    const end = Date.now() + duration;
+
+    const interval = setInterval(() => {
+      if (Date.now() > end) {
+        clearInterval(interval);
+        return;
+      }
+
+      confetti({
+        particleCount: 10,
+        spread: 100,
+        origin: { x: Math.random(), y: 0 },
+        colors: ['#38bdf8', '#e5e7eb', '#1e293b'],
+        gravity: 1.7,
+        ticks: 400
+      });
+    }, 250);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <!-- Login check -->
+  <script>
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+      window.location.href = "login.html";
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>heloooooo</title>
+  <link rel="stylesheet" href="style.css">
+
+ 
+</head>
+
+<body>
+
+<div class="container">
+
+
+  <h1>Bara Mahine aur Bara Gyaan ki Baate</h1>
+  <h3>Open only when the time allows</h3>
+
+  <br><br><br>
+
+  <div class="calendar" id="calendar"></div>
+
+  <br><br>
+
+  <p>By a Tejaswi Aurat</p><br><br><br><br>
+  <div class="top-bar">
+  <a href="gallery/gallery.html" class="gallery-btn">Gallery</a>
+</div>
+<div class="video-section">
+  <a href="https://youtube.com/playlist?list=PLCv9UzqNwGFP0bKEPuSNUGi0v8RdAXd-0&si=DMeo5ACnzqMy-3mR" target="_blank" class="video-btn">
+    Videos here ▶
+  </a>
+</div>
+
+</div>
+
+<!-- Calendar script -->
+<script src="calendar.js"></script>
+
+<!-- Confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<!-- Confetti every login (5 seconds) -->
+<script>
+  window.addEventListener("load", () => {
+    const duration = 7000; 
+    const end = Date.now() + duration;
+
+    const interval = setInterval(() => {
+      if (Date.now() > end) {
+        clearInterval(interval);
+        return;
+      }
+
+      confetti({
+        particleCount: 10,
+        spread: 70,
+        origin: { x: Math.random(), y: 0 },
+        colors: ['#38bdf8', '#e5e7eb', '#1e293b'],
+        gravity: 1.1,
+        ticks: 400
+      });
+    }, 250);
+  });
+</script>
+
+</body>
+</html>
